@@ -4,8 +4,6 @@
 //     priorities: [],
 // };
 
-import { createSlice } from '@reduxjs/toolkit';
-
 // const filtersReducer = (state = initState, action) => {
 //     switch (action.type) {
 //         case 'filters/searchFilterChange':
@@ -31,6 +29,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // export default filtersReducer;
 
 // redux toolkit
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export default createSlice({
     name: 'filters',
@@ -54,3 +53,16 @@ export default createSlice({
         },
     },
 });
+
+export const updateSearch = createAsyncThunk(
+    'filters/search',
+    async (search) => {
+        const res = await fetch('/api/updateSearch', {
+            method: 'POST',
+            body: JSON.stringify(search),
+        });
+
+        const data = await res.json();
+        console.log(data);
+    }
+);

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 //     searchFilterChange,
 //     statusFilterChange,
 // } from '../../redux/actions';
-import filtersSlice from '../Filters/filterSlice';
+import filtersSlice, { updateSearch } from '../Filters/filterSlice';
 
 const { Search } = Input;
 
@@ -18,7 +18,8 @@ export default function Filters() {
 
     const handleSearch = (e) => {
         setSearchText(e.target.value);
-        dispatch(filtersSlice.actions.searchFilterChange(e.target.value));
+        // dispatch(filtersSlice.actions.searchFilterChange(e.target.value));
+        dispatch(updateSearch(e.target.value));
     };
 
     const handleStatus = (e) => {
